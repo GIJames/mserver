@@ -1,52 +1,29 @@
-{ "servers":[
-	{
-		"name":"Peter",
-		"map":"avalanche",
-		"mode":"slayer",
-		"players":8,
-		"maxPlayers":16,
-		"special":"",
-		"ping":98,
-		"id":1
-	},
-	{
-		"name":"John",
-		"map":"edge",
-		"mode":"oddball",
-		"players":4,
-		"maxPlayers":16,
-		"special":"",
-		"ping":98,
-		"id":2
-	},
-	{
-		"name":"James",
-		"map":"riverworld",
-		"mode":"SWAT",
-		"players":0,
-		"maxPlayers":16,
-		"special":"",
-		"ping":90,
-		"id":3
-	},
-	{
-		"name":"Paul",
-		"map":"blood gulch",
-		"mode":"team slayer",
-		"players":16,
-		"maxPlayers":16,
-		"special":"",
-		"ping":108,
-		"id":4
-	},
-	{
-		"name":"Mr. Tibbs",
-		"map":"coagulation",
-		"mode":"CTF",
-		"players":9,
-		"maxPlayers":16,
-		"special":"",
-		"ping":7,
-		"id":5
+<?php
+	//database calls to generate the server list go here
+	$servername = "localhost";
+	//make sure credentials file is hidden in .gitignore .htaccess
+	$credentials = fopen("config/db_credentials.txt", "r");
+	$username = trim(fgets($credentials));
+	$password = trim(fgets($credentials));
+	$conn = new mysqli($servername, $username, $password);
+	//-----temporary while DB isn't running---------
+	$dummy = fopen("dummydata.json", r);
+	echo fread($dummy, filesize("dummydata.json"));
+	fclose($dummy);
+	//-----endtemporary---------
+	if($conn->connect_error) {
+		$dummy = fopen("dummydata.json", r);
+		echo fread($dummy, filesize("dummydata.json"));
+		fclose($dummy);
 	}
-]}
+	else{
+		$query = "SELECT name, map, mode, players, maxPlayers, special, ping, id FROM Servers";
+		$result = $conn->query($query);
+		$rows = array();
+		while($row = $result->fetch_assoc()){
+			array_push($rows, $row);
+		}
+		$conn->close();
+		echo json_encode($rows); //note: JS will have to be updated to match new format
+	}
+?>

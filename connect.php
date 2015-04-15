@@ -9,6 +9,7 @@
 				$credentials = fopen("config/db_credentials.txt", "r");
 				$username = trim(fgets($credentials));
 				$password = trim(fgets($credentials));
+				fclose($credentials);
 				$conn = new mysqli($servername, $username, $password);
 				
 				if($conn->connect_error) {
