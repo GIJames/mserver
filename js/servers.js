@@ -199,7 +199,7 @@ function requestModes(){
 }
 
 function refresh(){
-	document.getElementById("serverList").innerHTML = "";
+	document.getElementById("serverList").innerHTML = "<tr><th><i class=\"fa fa-spinner fa-pulse fa-5x\"></i></th></tr>";
 	requestMaps();
 	requestModes();
 	requestServers();
