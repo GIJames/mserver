@@ -17,11 +17,11 @@
 					$err = "Database connection error.";
 				}
 				else{
-					$query = "SELECT players, maxPlayers, uri FROM Servers WHERE id=" . $_GET["sid"];
+					$query = "SELECT players, maxPlayers, ipaddr, xnaddr, xnid FROM Servers WHERE id=" . $_GET["sid"];
 					$result = $conn->query($query);
 					if($row = $result->fetch_assoc()){
 						if($row["players"] < $row["maxPlayers"]){
-							$uri = $row["uri"];
+							$uri = "ipaddr=" . $row["ipaddr"] . "&xnaddr=" . $row["xnaddr"] . "&xnid=" . $row["xnid"];
 						}
 						else{
 							$err = "maxPlayers reached";
@@ -42,6 +42,10 @@
 		<?php
 			if(isset($err)){
 				echo $err;
+			}
+			if(isset($uri)){
+				echo "connection \"successful\"; commence dummy data gibberish:<br>";
+				echo $uri;
 			}
 		?>
 	</body>
