@@ -84,10 +84,19 @@ function continueRefresh(response){
 	finishRefresh();
 }
 
+//up: &#9650; down: &#9660;
+function markSorting(cat){
+	if(cat == basis){
+		return (reverse ? "&#9660;" : "&#9650;");
+	}
+	else{
+		return "";
+	}
+}
 
 function finishRefresh(){
 	servers.sort(function(a,b){return serverSort(a,b);});
-	var contentsString = "<tr><th onclick=\"order(BasisEnum.NAME)\">name</th><th onclick=\"order(BasisEnum.MAP)\">map</th><th onclick=\"order(BasisEnum.MODE)\">mode</th><th onclick=\"order(BasisEnum.PLAYERS)\">players</th><th onclick=\"order(BasisEnum.SPECIAL)\">special</th><th onclick=\"order(BasisEnum.PING)\">ping</th></tr>";
+	var contentsString = "<tr><th onclick=\"order(BasisEnum.NAME)\">name" + markSorting(BasisEnum.NAME) + "</th><th onclick=\"order(BasisEnum.MAP)\">map" + markSorting(BasisEnum.MAP) + "</th><th onclick=\"order(BasisEnum.MODE)\">mode" + markSorting(BasisEnum.MODE) + "</th><th onclick=\"order(BasisEnum.PLAYERS)\">players" + markSorting(BasisEnum.PLAYERS) + "</th><th onclick=\"order(BasisEnum.SPECIAL)\">special" + markSorting(BasisEnum.SPECIAL) + "</th><th onclick=\"order(BasisEnum.PING)\">ping" + markSorting(BasisEnum.PING) + "</th></tr>";
 	for(server in servers){
 		if(!filtered(servers[server])){
 			console.log(contentsString);
