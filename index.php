@@ -7,6 +7,15 @@
 	<body>
 		<div id="topBar" class="fullWidth">
 			<a onclick="refresh()">refresh server list</a>
+			<form id="filters">
+			<span>name:</span><input onkeyup="reFilter()" type="text" name="name">
+			<span>map:</span><input onkeyup="reFilter()" type="text" name="map">
+			<span>mode:</span><input onkeyup="reFilter()" type="text" name="mode">
+			<span>hide empty:</span><input onclick="reFilter()" type="checkbox" name="empty">
+			<span>hide full:</span><input onclick="reFilter()" type="checkbox" name="full">
+			<span>special:</span><input onkeyup="reFilter()" type="text" name="special">
+			<span>max ping:</span><input onkeyup="reFilter()" type="text" name="maxPing">
+			</form>
 		</div>
 		<div id="serverListDiv" class="fullWidth">
 			<table id="serverList" class="serverTable">

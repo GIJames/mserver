@@ -99,7 +99,6 @@ function finishRefresh(){
 	var contentsString = "<tr><th onclick=\"order(BasisEnum.NAME)\">name" + markSorting(BasisEnum.NAME) + "</th><th onclick=\"order(BasisEnum.MAP)\">map" + markSorting(BasisEnum.MAP) + "</th><th onclick=\"order(BasisEnum.MODE)\">mode" + markSorting(BasisEnum.MODE) + "</th><th onclick=\"order(BasisEnum.PLAYERS)\">players" + markSorting(BasisEnum.PLAYERS) + "</th><th onclick=\"order(BasisEnum.SPECIAL)\">special" + markSorting(BasisEnum.SPECIAL) + "</th><th onclick=\"order(BasisEnum.PING)\">ping" + markSorting(BasisEnum.PING) + "</th></tr>";
 	for(server in servers){
 		if(!filtered(servers[server])){
-			console.log(contentsString);
 			contentsString = contentsString + "<tr><td><a href=\"?sid=" + servers[server].id + "\">" + servers[server].name + "</a></td><td>" + servers[server].map + "</td><td>" + servers[server].mode + "</td><td>" + servers[server].players + "/" + servers[server].maxPlayers + "</td><td>" + servers[server].special + "</td><td>" + servers[server].ping + "</td></tr>";
 		}
 	}
@@ -107,6 +106,14 @@ function finishRefresh(){
 }
 
 function reFilter(){
+	var filterForm = document.getElementById("filters").elements;
+	filters.name = filterForm.namedItem("name").value;
+	filters.map = filterForm.namedItem("map").value;
+	filters.mode = filterForm.namedItem("mode").value;
+	filters.excludeEmpty = filterForm.namedItem("empty").checked;
+	filters.excludeFull = filterForm.namedItem("full").checked;
+	filters.special = filterForm.namedItem("special").value;
+	filters.maxPing = parseInt(filterForm.namedItem("maxPing").value);
 	finishRefresh();
 }
 
