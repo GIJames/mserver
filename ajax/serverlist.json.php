@@ -2,19 +2,16 @@
 	//database calls to generate the server list go here
 	$servername = "localhost";
 	//make sure credentials file is hidden in .gitignore .htaccess
-	$credentials = fopen("config/db_credentials.txt", "r");
+	$credentials = fopen("../config/db_credentials.txt", "r");
 	$username = trim(fgets($credentials));
 	$password = trim(fgets($credentials));
-	$conn = new mysqli($servername, $username, $password);
-	//-----temporary while DB isn't running---------
-	$dummy = fopen("dummydata.json", r);
-	echo fread($dummy, filesize("dummydata.json"));
-	fclose($dummy);
-	//-----endtemporary---------
+	$dbname = "Servers";
+	$conn = new mysqli($servername, $username, $password, $dbname);
 	if($conn->connect_error) {
 		$dummy = fopen("dummydata.json", r);
 		echo fread($dummy, filesize("dummydata.json"));
 		fclose($dummy);
+		die("Connection failed: " . $conn->connect_error);
 	}
 	else{
 		$query = "SELECT name, map, mode, players, maxPlayers, special, ping, id FROM Servers";

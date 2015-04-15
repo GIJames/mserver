@@ -80,7 +80,7 @@ function connect(id){
 
 function continueRefresh(response){
 	var jsonResponse = JSON.parse(response);
-	servers = jsonResponse.servers;
+	servers = jsonResponse;
 	finishRefresh();
 }
 
