@@ -12,13 +12,35 @@
 				$conn = new mysqli($servername, $username, $password);
 				
 				if($conn->connect_error) {
-					die("Database connection error.");
+					$err = "Database connection error.";
 				}
-				
-				//header( 'Location: XXXX://' . $uri ) ;
+				else{
+					$query = "SELECT players, maxPlayers, uri FROM Servers WHERE id=" . $_GET["sid"];
+					$result = $conn->query($query);
+					if($row = $result->fetch_assoc()){
+						if($row["players"] < $row["maxPlayers"]){
+							$uri = $row["uri"];
+						}
+						else{
+							$err = "maxPlayers reached";
+						}
+					}
+					else {
+						$err = "server not found";
+					}
+					$conn->close();
+					if(isset($uri)){
+						//header( 'Location: XXXX://' . $uri ) ;
+					}
+				}
 			}
 		?>
 	</head>
 	<body>
+		<?php
+			if(isset($err)){
+				echo $err;
+			}
+		?>
 	</body>
 </html>
