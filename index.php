@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/main.css">
 		<script src="js/servers.js"></script>
 	</head>
 	<body>
+		NOTICE: THIS IS DUMMY DATA, NOT ACTUAL SERVER DATA
 		<div id="topBar" class="fullWidth">
-			<a onclick="refresh()">refresh server list</a>
+			<a onclick="refresh()"><i class="fa fa-refresh"></i></a>
 			<form id="filters">
 			<span>name:</span><input onkeyup="reFilter()" type="text" name="name">
 			<span>map:</span><select onchange="reFilter()" type="text" name="map" id="maps"></select>
@@ -19,31 +21,8 @@
 		</div>
 		<div id="serverListDiv" class="fullWidth">
 			<table id="serverList" class="serverTable">
-				<tr>
-					<th onclick="order(BasisEnum.NAME)">name</th>
-					<th onclick="order(BasisEnum.MAP)">map</th>
-					<th onclick="order(BasisEnum.MODE)">mode</th>
-					<th onclick="order(BasisEnum.PLAYERS)">players</th>
-					<th onclick="order(BasisEnum.SPECIAL)">special</th>
-					<th onclick="order(BasisEnum.PING)">ping</th>
-				</tr>
-				<tr>
-					<td>name</td>
-					<td>map</td>
-					<td>mode</td>
-					<td>players</td>
-					<td>special</td>
-					<td>ping</td>
-				</tr>
-				<tr>
-					<td>name</td>
-					<td>map</td>
-					<td>mode</td>
-					<td>players</td>
-					<td>special</td>
-					<td>ping</td>
-				</tr>
 			</table>
 		</div>
+		<p>Font Awesome by Dave Gandy - http://fontawesome.io</p>
 	</body>
 </html>

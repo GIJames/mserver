@@ -120,7 +120,7 @@ function continueRefresh(response){
 //up: &#9650; down: &#9660;
 function markSorting(cat){
 	if(cat == basis){
-		return (reverse ? "&#9660;" : "&#9650;");
+		return (reverse ? "<i class=\"fa fa-sort-amount-desc\"></i>" : "<i class=\"fa fa-sort-amount-asc\"></i>");
 	}
 	else{
 		return "";
@@ -129,7 +129,7 @@ function markSorting(cat){
 
 function finishRefresh(){
 	servers.sort(function(a,b){return serverSort(a,b);});
-	var contentsString = "<tr><th onclick=\"order(BasisEnum.NAME)\">name" + markSorting(BasisEnum.NAME) + "</th><th onclick=\"order(BasisEnum.MAP)\">map" + markSorting(BasisEnum.MAP) + "</th><th onclick=\"order(BasisEnum.MODE)\">mode" + markSorting(BasisEnum.MODE) + "</th><th onclick=\"order(BasisEnum.PLAYERS)\">players" + markSorting(BasisEnum.PLAYERS) + "</th><th onclick=\"order(BasisEnum.SPECIAL)\">special" + markSorting(BasisEnum.SPECIAL) + "</th><th onclick=\"order(BasisEnum.PING)\">ping" + markSorting(BasisEnum.PING) + "</th></tr>";
+	var contentsString = "<tr><th onclick=\"order(BasisEnum.NAME)\"><i class=\"fa fa-server\"></i>" + markSorting(BasisEnum.NAME) + "</th><th onclick=\"order(BasisEnum.MAP)\"><i class=\"fa fa-map-marker\"></i>" + markSorting(BasisEnum.MAP) + "</th><th onclick=\"order(BasisEnum.MODE)\"><i class=\"fa fa-cog\"></i>" + markSorting(BasisEnum.MODE) + "</th><th onclick=\"order(BasisEnum.PLAYERS)\"><i class=\"fa fa-users\"></i>" + markSorting(BasisEnum.PLAYERS) + "</th><th onclick=\"order(BasisEnum.SPECIAL)\"><i class=\"fa fa-tags\"></i>" + markSorting(BasisEnum.SPECIAL) + "</th><th onclick=\"order(BasisEnum.PING)\"><i class=\"fa fa-signal\"></i>" + markSorting(BasisEnum.PING) + "</th></tr>";
 	for(server in servers){
 		if(!filtered(servers[server])){
 			contentsString = contentsString + "<tr><td><a href=\"connect.php?sid=" + servers[server].id + "\">" + servers[server].name + "</a></td><td>" + servers[server].map + "</td><td>" + servers[server].mode + "</td><td>" + servers[server].players + "/" + servers[server].maxPlayers + "</td><td>" + servers[server].special + "</td><td>" + servers[server].ping + "</td></tr>";
