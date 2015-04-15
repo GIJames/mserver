@@ -120,10 +120,10 @@ function continueRefresh(response){
 //up: &#9650; down: &#9660;
 function markSorting(cat){
 	if(cat == basis){
-		return (reverse ? "<i class=\"fa fa-sort-amount-desc\"></i>" : "<i class=\"fa fa-sort-amount-asc\"></i>");
+		return (reverse ? "<br><i class=\"fa fa-sort-desc\"></i>" : "<br><i class=\"fa fa-sort-asc\"></i>");
 	}
 	else{
-		return "";
+		return "<br><i class=\"fa fa-sort\"></i>";
 	}
 }
 
