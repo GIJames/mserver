@@ -1,5 +1,7 @@
 //server list
 var servers = [];
+var modes = [];
+var maps = [];
 //order for sorting and sorting basis
 var reverse = false;
 var BasisEnum = {
@@ -78,6 +80,37 @@ function connect(id){
 	alert(id);
 }
 
+function finishMaps(){
+	var inside = "<option value=\"\">" + "all" + "</option>";
+	for(x in maps){
+		inside = inside + "<option value=\"" + maps[x].map + "\">" + maps[x].map + "</option>";
+	}
+	document.getElementById("maps").innerHTML = inside;
+	reFilter();
+}
+
+function finishModes(){
+	var inside = "<option value=\"\">" + "all" + "</option>";
+	console.log(modes);
+	for(x in modes){
+		inside = inside + "<option value=\"" + modes[x].mode + "\">" + modes[x].mode + "</option>";
+	}
+	document.getElementById("mode").innerHTML = inside;
+	reFilter();
+}
+
+function continueMaps(response){
+	var jsonResponse = JSON.parse(response);
+	maps = jsonResponse;
+	finishMaps();
+}
+
+function continueModes(response){
+	var jsonResponse = JSON.parse(response);
+	modes = jsonResponse;
+	finishModes();
+}
+
 function continueRefresh(response){
 	var jsonResponse = JSON.parse(response);
 	servers = jsonResponse;
@@ -137,8 +170,38 @@ function requestServers(){
 	
 }
 
+function requestMaps(){
+	var request = new XMLHttpRequest();
+	var url = "ajax/maplist.json.php";
+	
+	request.onreadystatechange=function() {
+		if (request.readyState == 4 && request.status == 200){
+			continueMaps(request.responseText);
+		}
+	}
+	request.open("GET" , url, true);
+	request.send();
+	
+}
+
+function requestModes(){
+	var request = new XMLHttpRequest();
+	var url = "ajax/modelist.json.php";
+	
+	request.onreadystatechange=function() {
+		if (request.readyState == 4 && request.status == 200){
+			continueModes(request.responseText);
+		}
+	}
+	request.open("GET" , url, true);
+	request.send();
+	
+}
+
 function refresh(){
 	document.getElementById("serverList").innerHTML = "";
+	requestMaps();
+	requestModes();
 	requestServers();
 }
 

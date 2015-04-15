@@ -9,8 +9,8 @@
 			<a onclick="refresh()">refresh server list</a>
 			<form id="filters">
 			<span>name:</span><input onkeyup="reFilter()" type="text" name="name">
-			<span>map:</span><input onkeyup="reFilter()" type="text" name="map">
-			<span>mode:</span><input onkeyup="reFilter()" type="text" name="mode">
+			<span>map:</span><select onchange="reFilter()" type="text" name="map" id="maps"></select>
+			<span>mode:</span><select onchange="reFilter()" type="text" name="mode" id="mode"></select>
 			<span>hide empty:</span><input onclick="reFilter()" type="checkbox" name="empty">
 			<span>hide full:</span><input onclick="reFilter()" type="checkbox" name="full">
 			<span>special:</span><input onkeyup="reFilter()" type="text" name="special">
