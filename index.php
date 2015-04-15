@@ -8,7 +8,7 @@
 	<body>
 		NOTICE: THIS IS DUMMY DATA, NOT ACTUAL SERVER DATA
 		<div id="topBar" class="fullWidth">
-			<a onclick="refresh()"><i class="fa fa-refresh"></i></a>
+			<div class="refreshDiv"><a onclick="refresh()"><i class="fa fa-refresh fa-3x"></i></a></div>
 			<form id="filters">
 			<span>name:</span><input onkeyup="reFilter()" type="text" name="name">
 			<span>map:</span><select onchange="reFilter()" type="text" name="map" id="maps"></select>
