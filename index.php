@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php
-			if(isset($_GET["sid"])){
-				//database calls to generate a custom URI to be handled by the client program go here
-				//header( 'Location: XXXX://' . $uri ) ;
-			}
-		?>
 		<link rel="stylesheet" href="css/main.css">
 		<script src="js/servers.js"></script>
 	</head>
