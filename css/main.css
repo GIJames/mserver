@@ -1,0 +1,17 @@
+body{
+	background-color: white;
+	font-family: "Arial", Helvetica, sans-serif;
+}
+
+.fullWidth {
+	width: 100%;
+}
+
+.serverTable {
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+    border-collapse: collapse;
+}
