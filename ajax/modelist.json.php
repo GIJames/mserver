@@ -9,9 +9,6 @@
 	$dbname = "Servers";
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if($conn->connect_error) {
-		$dummy = fopen("dummydata.json", r);
-		echo fread($dummy, filesize("dummydata.json"));
-		fclose($dummy);
 		die("Connection failed: " . $conn->connect_error);
 	}
 	else{
