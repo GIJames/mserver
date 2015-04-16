@@ -21,8 +21,9 @@
 		</div>
 		<div id="serverListDiv" class="fullWidth">
 			<table id="serverList" class="serverTable">
+				<tr><th><i class="fa fa-spinner fa-pulse fa-5x"></i></th></tr>
 			</table>
 		</div>
-		<p>Font Awesome by Dave Gandy - http://fontawesome.io</p>
+		<p>Font Awesome by Dave Gandy - <a href="http://fontawesome.io">http://fontawesome.io</a></p>
 	</body>
 </html>
