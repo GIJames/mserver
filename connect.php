@@ -43,13 +43,13 @@
 	<body>
 		<?php
 			if(isset($err)){
-				echo "Unable to connect to server: " . $err . "<br>";
-				echo "<a href=\"javascript:history.back()\"><i class=\"fa fa-caret-square-o-left fa-3x\"></i></a>";
+				echo "Unable to connect to server: " . $err;
 			}
 			if(isset($uri)){
 				echo "connection \"successful\"; commence dummy data gibberish:<br>";
 				echo $uri;
 			}
 		?>
+		<br><a href="javascript:history.back()"><i class="fa fa-caret-square-o-left fa-3x"></i></a>
 	</body>
 </html>
