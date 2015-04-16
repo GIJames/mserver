@@ -170,7 +170,7 @@ function requestServers(){
 
 function requestMaps(){
 	var request = new XMLHttpRequest();
-	var url = "ajax/maplist.json.php";
+	var url = "ajax/serverlist.json.php?sub=map";
 	
 	request.onreadystatechange=function() {
 		if (request.readyState == 4 && request.status == 200){
@@ -184,7 +184,7 @@ function requestMaps(){
 
 function requestModes(){
 	var request = new XMLHttpRequest();
-	var url = "ajax/modelist.json.php";
+	var url = "ajax/serverlist.json.php?sub=mode";
 	
 	request.onreadystatechange=function() {
 		if (request.readyState == 4 && request.status == 200){

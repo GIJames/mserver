@@ -8,13 +8,20 @@
 	$password = trim(fgets($credentials));
 	$dbname = trim(fgets($credentials));
 	fclose($credentials);
-	
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
 	else{
 		$query = "SELECT name, map, mode, players, maxPlayers, special, ping, id FROM Servers";
+		if(isset($_GET["sub"])){
+			if($_GET["sub"] === "map"){
+				$query = "SELECT DISTINCT map FROM Servers";
+			}
+			else{
+				$query = "SELECT DISTINCT mode FROM Servers";
+			}
+		}
 		$result = $conn->query($query);
 		$rows = array();
 		while($row = $result->fetch_assoc()){
