@@ -1,4 +1,5 @@
 //server list
+var refreshing = false;
 var servers = [];
 var modes = [];
 var maps = [];
@@ -136,6 +137,7 @@ function finishRefresh(){
 		}
 	}
 	document.getElementById("serverList").innerHTML = contentsString;
+	setTimeout( function(){ refreshing = false;}, 10000);
 }
 
 function reFilter(){
@@ -199,10 +201,16 @@ function requestModes(){
 }
 
 function refresh(){
-	document.getElementById("serverList").innerHTML = "<tr><th><i class=\"fa fa-spinner fa-pulse fa-5x\"></i></th></tr>";
-	requestMaps();
-	requestModes();
-	requestServers();
+	if(refreshing){
+		alert("Please wait at least ten seconds between refreshing.");
+	}
+	else{
+		refreshing = true;
+		document.getElementById("serverList").innerHTML = "<tr><th><i class=\"fa fa-spinner fa-pulse fa-5x\"></i></th></tr>";
+		requestMaps();
+		requestModes();
+		requestServers();
+	}
 }
 
 window.onload = function() {
