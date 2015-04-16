@@ -1,12 +1,14 @@
 <?php
 	//database calls to generate the server list go here
-	$servername = "localhost";
+	
 	//make sure credentials file is hidden in .gitignore .htaccess
 	$credentials = fopen("../config/db_credentials.txt", "r");
+	$servername = trim(fgets($credentials));
 	$username = trim(fgets($credentials));
 	$password = trim(fgets($credentials));
+	$dbname = trim(fgets($credentials));
 	fclose($credentials);
-	$dbname = "Servers";
+	
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);

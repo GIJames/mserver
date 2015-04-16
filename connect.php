@@ -6,12 +6,12 @@
 		<?php
 			if(isset($_GET["sid"])){
 				//database calls to generate a custom URI to be handled by the client program go here
-				$servername = "localhost";
 				//make sure credentials file is hidden in .gitignore .htaccess
 				$credentials = fopen("config/db_credentials.txt", "r");
+				$servername = trim(fgets($credentials));
 				$username = trim(fgets($credentials));
 				$password = trim(fgets($credentials));
-				$dbname = "Servers";
+				$dbname = trim(fgets($credentials));
 				fclose($credentials);
 				$conn = new mysqli($servername, $username, $password, $dbname);
 				
