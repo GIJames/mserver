@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/main.css">
 		<?php
 			if(isset($_GET["sid"])){
 				//database calls to generate a custom URI to be handled by the client program go here
@@ -41,7 +43,8 @@
 	<body>
 		<?php
 			if(isset($err)){
-				echo $err;
+				echo "Unable to connect to server: " . $err . "<br>";
+				echo "<a href=\"javascript:history.back()\"><i class=\"fa fa-caret-square-o-left fa-3x\"></i></a>";
 			}
 			if(isset($uri)){
 				echo "connection \"successful\"; commence dummy data gibberish:<br>";
