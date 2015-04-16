@@ -77,10 +77,6 @@ function filtered(server){
 	return false;
 }
 
-function connect(id){
-	alert(id);
-}
-
 function finishMaps(){
 	var inside = "<option value=\"\">" + "all" + "</option>";
 	for(x in maps){
