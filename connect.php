@@ -19,7 +19,7 @@
 					$err = "Database connection error.";
 				}
 				else{
-					$query = "SELECT players, maxPlayers, ipaddr, xnaddr, xnid FROM Servers WHERE id=" . $_GET["sid"];
+					$query = "SELECT players, maxPlayers, ipaddr, xnaddr, xnid FROM Servers WHERE id=" . test_number($_GET["sid"]);
 					$result = $conn->query($query);
 					if($row = $result->fetch_assoc()){
 						if($row["players"] < $row["maxPlayers"]){
@@ -37,6 +37,10 @@
 						//header( 'Location: XXXX://' . $uri ) ;
 					}
 				}
+			}
+			function test_number($data) {
+			  $data = intval($data);
+			  return $data;
 			}
 		?>
 	</head>
