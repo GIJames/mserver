@@ -24,6 +24,7 @@
 				<tr><th><i class="fa fa-spinner fa-pulse fa-5x"></i></th></tr>
 			</table>
 		</div>
-		<p>Font Awesome by Dave Gandy - <a href="http://fontawesome.io">http://fontawesome.io</a></p>
+		<p>Server browser by GIJames - <a href="https://github.com/GIJames/mserver">https://github.com/GIJames/mserver</a><br>
+		Font Awesome by Dave Gandy - <a href="http://fontawesome.io">http://fontawesome.io</a></p>
 	</body>
 </html>
