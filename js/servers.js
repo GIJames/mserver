@@ -208,3 +208,19 @@ function refresh(){
 window.onload = function() {
 	refresh();
 }
+
+var spinning = false;
+
+function stopSpin(element){
+	if(spinning){
+		spinning = false;
+		element.innerHTML = "<i class=\"fa fa-refresh fa-3x\"></i>"
+	}
+}
+
+function startSpin(element){
+	if(!spinning){
+		spinning = true;
+		element.innerHTML = "<i class=\"fa fa-refresh fa-spin fa-3x\"></i>"
+	}
+}
