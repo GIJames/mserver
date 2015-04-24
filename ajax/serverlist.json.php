@@ -2,18 +2,13 @@
 	//database calls to generate the server list go here
 	
 	//make sure credentials file is hidden in .gitignore .htaccess
-	$credentials = fopen("../config/db_credentials.txt", "r");
-	$servername = trim(fgets($credentials));
-	$username = trim(fgets($credentials));
-	$password = trim(fgets($credentials));
-	$dbname = trim(fgets($credentials));
-	fclose($credentials);
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	include '../config/db_credentials.php';
+	$conn = new mysqli($dbhost, $dbuser, $dbpassword, $dbname);
 	if($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
 	else{
-		$query = "SELECT name, map, mode, players, maxPlayers, special, ping, id FROM Servers";
+		$query = "SELECT Servers.name, Servers.map, Servers.mode, Servers.players, Servers.maxPlayers, Servers.special, Servers.ping, Servers.xnkid, Servers.lastSeen, radius.raduserpublic.public AS allowPublic FROM (Servers LEFT JOIN radius.raduserpublic ON Servers.name=radius.raduserpublic.username)";
 		if(isset($_GET["sub"])){
 			if($_GET["sub"] === "map"){
 				$query = "SELECT DISTINCT map FROM Servers";
@@ -25,6 +20,9 @@
 		$result = $conn->query($query);
 		$rows = array();
 		while($row = $result->fetch_assoc()){
+			if(!isset($row["mode"])){
+				$row["mode"] = "null";
+			}
 			array_push($rows, $row);
 		}
 		$conn->close();

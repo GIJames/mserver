@@ -4,7 +4,7 @@ var servers = [];
 var modes = [];
 var maps = [];
 //order for sorting and sorting basis
-var reverse = false;
+var reverse = true;
 var BasisEnum = {
 	NAME: 0,
 	MAP: 1,
@@ -13,7 +13,7 @@ var BasisEnum = {
 	SPECIAL: 4,
 	PING: 5
 }
-var basis = BasisEnum.PING;
+var basis = BasisEnum.NAME;
 
 function serverSort(a,b){
 	var result = 0;
@@ -129,11 +129,11 @@ function finishRefresh(){
 	var contentsString = "<tr><th onclick=\"order(BasisEnum.NAME)\"><i class=\"fa fa-server\"></i>" + markSorting(BasisEnum.NAME) + "</th><th onclick=\"order(BasisEnum.MAP)\"><i class=\"fa fa-map-marker\"></i>" + markSorting(BasisEnum.MAP) + "</th><th onclick=\"order(BasisEnum.MODE)\"><i class=\"fa fa-cog\"></i>" + markSorting(BasisEnum.MODE) + "</th><th onclick=\"order(BasisEnum.PLAYERS)\"><i class=\"fa fa-users\"></i>" + markSorting(BasisEnum.PLAYERS) + "</th><th onclick=\"order(BasisEnum.SPECIAL)\"><i class=\"fa fa-tags\"></i>" + markSorting(BasisEnum.SPECIAL) + "</th><th onclick=\"order(BasisEnum.PING)\"><i class=\"fa fa-signal\"></i>" + markSorting(BasisEnum.PING) + "</th></tr>";
 	for(server in servers){
 		if(!filtered(servers[server])){
-			contentsString = contentsString + "<tr><td><a href=\"connect.php?sid=" + servers[server].id + "\">" + servers[server].name + "</a></td><td>" + servers[server].map + "</td><td>" + servers[server].mode + "</td><td>" + servers[server].players + "/" + servers[server].maxPlayers + "</td><td>" + servers[server].special + "</td><td>" + servers[server].ping + "</td></tr>";
+			contentsString = contentsString + "<tr><td><a href=\"connect.php?xnkid=" + servers[server].xnkid + "\">" + servers[server].name + "</a>" + (servers[server].allowPublic? ' <i class="fa fa-link"></i>' : "") + "</td><td>" + servers[server].map + "</td><td>" + servers[server].mode + "</td><td>" + servers[server].players + "/" + servers[server].maxPlayers + "</td><td>" + servers[server].special + "</td><td>" + servers[server].ping + "</td></tr>";
 		}
 	}
 	document.getElementById("serverList").innerHTML = contentsString;
-	setTimeout( function(){ refreshing = false;}, 10000);
+	setTimeout( function(){ refreshing = false;}, 100);
 }
 
 function reFilter(){
@@ -149,14 +149,14 @@ function reFilter(){
 }
 
 function order(b){
-	reverse = ((basis == b) ? !reverse : false);
+	reverse = ((basis == b) ? !reverse : true);
 	basis = b;
 	finishRefresh();
 }
 
 function requestServers(){
 	var request = new XMLHttpRequest();
-	var url = "ajax/serverlist.json.php";
+	var url = "ajax/serverlist.json.php"; //
 	
 	request.onreadystatechange=function() {
 		if (request.readyState == 4 && request.status == 200){
@@ -198,7 +198,7 @@ function requestModes(){
 
 function refresh(){
 	if(refreshing){
-		alert("Please wait at least ten seconds between refreshing.");
+		alert("Please wait longer before refreshing.");
 	}
 	else{
 		refreshing = true;
